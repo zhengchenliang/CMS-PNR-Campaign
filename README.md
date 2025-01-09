@@ -27,16 +27,17 @@ To compile the script:
 ```bash
 g++ wfStatusSift.cc -o wfStatusSift -std=c++17 `root-config --cflags --libs` -lcurl
 ```
+
+#### Execution
+Run the compiled binary with an optional output tag:
+```bash
+./wfStatusSift [outputTag = "wfStatus"]
+```
 or
 ```bash
 root -l -b -q wfStatusSift.cc
 ```
 
-#### Execution
-Run the compiled binary with an optional output tag:
-```bash
-./wfStatusSift [outputTag]
-```
 - **Default Output Tag**: `wfStatus`.
 - **Outputs**:
   - `<outputTag>.root`: Contains all parsed campaign data.
