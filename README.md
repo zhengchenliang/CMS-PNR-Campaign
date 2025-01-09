@@ -1,10 +1,10 @@
 # CMS-PNR-Campaign
 
-Campaign management in CMS PNR
+This repository contains utilities for managing campaigns in CMS PNR.
 
 ## `wfStatusSift.cc`
 
-This repository contains utilities for managing campaigns in CMS PNR, with the primary functionality provided by the `wfStatusSift.cc` script. This script parses campaign data from an online source, filters entries based on specific criteria, and outputs the results in both ROOT and FPS formats.
+This script parses campaign data from an online source, filters entries based on specific criteria, and outputs the results in both ROOT and FPS formats.
 
 ### Features
 
@@ -27,6 +27,10 @@ To compile the script:
 ```bash
 g++ wfStatusSift.cc -o wfStatusSift -std=c++17 `root-config --cflags --libs` -lcurl
 ```
+or
+```bash
+root -l -b -q wfStatusSift.cc
+```
 
 #### Execution
 Run the compiled binary with an optional output tag:
@@ -36,6 +40,7 @@ Run the compiled binary with an optional output tag:
 - **Default Output Tag**: `wfStatus`.
 - **Outputs**:
   - `<outputTag>.root`: Contains all parsed campaign data.
+  - `<outputTag>.fps`: Flat file with parsed campaign data.
   - `<outputTag>.sift.root`: Contains filtered campaign data.
   - `<outputTag>.sift.fps`: Flat file with filtered campaign data.
 
