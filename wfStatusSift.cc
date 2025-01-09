@@ -47,7 +47,6 @@ bool ParseSingleRow(const std::string &rowRaw, RowData &outRow)
   // 1) Replace objects {v:X,f:'<b>...'</b>} with X
   static const std::regex objectRegex(R"(\{v:\s*([+-]?[0-9]*\.?[0-9]+)\s*,f:'[^']*'\})");
   std::string rowFormal = std::regex_replace(rowRaw, objectRegex, "$1");
-  std::cout << rowRaw << " -> " << rowFormal << std::endl;
   // 2) Extract campaign=...
   static const std::regex campRegex(R"(campaign=([^"]+))");
   std::smatch cm;
@@ -55,7 +54,6 @@ bool ParseSingleRow(const std::string &rowRaw, RowData &outRow)
     outRow.campaign = cm[1].str();
   else
     outRow.campaign = rowFormal; // fallback if not found
-  std::cout << outRow.campaign << std::endl;
   // 3) Parse numeric tokens
   static const std::regex numberRegex(R"(,[0-9]+(\.[0-9]+)?)");
   std::sregex_iterator it(rowFormal.begin(), rowFormal.end(), numberRegex), end;
@@ -164,13 +162,6 @@ bool WriteTTree(const std::vector<RowData> &rows, const std::string &fileName)
     b_rejected           = static_cast<long>(r.col[15]);
     b_rejectedArchived   = static_cast<long>(r.col[16]);
     b_other              = static_cast<long>(r.col[17]);
-    // Look
-    std::cout << r.campaign << ": ";
-    for (int i = 0; i < _numCols_; i++)
-    {
-      std::cout << r.col[i] << " ";
-    }
-    std::cout << std::endl;
 /*
     for (int i = 0; i < _numCols_; i++)
       b_num[i] = r.col[i];
